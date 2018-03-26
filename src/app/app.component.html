@@ -1,5 +1,19 @@
-<div>
-  <h1 class="title">
-    Таймлайн событий
-  </h1>
-</div>
+<h1 class="title">
+  Таймлайн событий
+</h1>
+<nav>
+  <ul>
+    <li>
+      <a routerLink="/events">Список</a>
+    </li>
+    <li>
+      <a routerLink="/create-transaction">Создать транзакцию</a>
+    </li>
+    <li>
+      <a routerLink="/create-news">Создать новость</a>
+    </li>
+  </ul>
+</nav>
+<main>
+  <router-outlet></router-outlet>
+</main>
