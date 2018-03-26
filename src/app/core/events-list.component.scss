@@ -1,0 +1,20 @@
+.events-table {
+  td {
+    padding: 5px 15px;
+    font-size: 20px;
+  }
+
+  &__caption {
+    cursor: pointer;
+    user-select: none;
+    font-weight: bold;
+
+    &:first-of-type {
+      cursor: inherit;
+    }
+  }
+
+  &__item {
+    cursor: pointer;
+  }
+}

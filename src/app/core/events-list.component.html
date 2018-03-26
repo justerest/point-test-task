@@ -1,0 +1,25 @@
+<table class="events-table">
+
+  <tr>
+    <td class="events-table__caption">Заголовок</td>
+    <td class="events-table__caption" (click)="sort('byType')">
+      Тип
+    </td>
+    <td class="events-table__caption" (click)="sort('byDate')">
+      Дата
+    </td>
+  </tr>
+
+  <tr *ngFor="let event of events">
+    <td class="events-table__item">
+      {{event.title}}
+    </td>
+    <td class="events-table__item">
+      {{event.type}}
+    </td>
+    <td class="events-table__item">
+      {{event.getDate}}
+    </td>
+  </tr>
+
+</table>
