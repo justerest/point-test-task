@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { EventsService } from '../events.service';
+import { News } from '../news.model';
 import { SortingFunctions } from '../sorting-functions';
+import { Transaction } from '../transaction.model';
 
 @Component({
   selector: 'app-events-list',
@@ -15,6 +18,7 @@ export class EventsListComponent implements OnInit {
 
   constructor(
     private eventsService: EventsService,
+    private router: Router,
   ) { }
 
   async  ngOnInit() {
@@ -23,6 +27,11 @@ export class EventsListComponent implements OnInit {
 
   get events() {
     return this.eventsService.events;
+  }
+
+  public select(event: News | Transaction) {
+    this.eventsService.select(event);
+    this.router.navigate([event.type + '-detail']);
   }
 
   public sort(orderBy: keyof typeof SortingFunctions) {

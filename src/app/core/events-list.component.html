@@ -10,7 +10,7 @@
     </td>
   </tr>
 
-  <tr *ngFor="let event of events">
+  <tr *ngFor="let event of events" (click)="select(event)">
     <td class="events-table__item">
       {{event.title}}
     </td>

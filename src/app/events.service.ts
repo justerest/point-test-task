@@ -11,7 +11,7 @@ import { Transaction } from './transaction.model';
 export class EventsService {
 
   events: (News | Transaction)[] = [];
-  selectedEvent?: News | Transaction;
+  selectedEvent?: News | Transaction | null;
 
   constructor() { }
 
@@ -26,13 +26,17 @@ export class EventsService {
     if (isReverse) this.events.reverse();
   }
 
-  delete(id: string) {
-    const index = this.events.findIndex(event => event.id === id);
-    if (index + 1) this.events.splice(index, 1);
+  select(event: News | Transaction) {
+    this.selectedEvent = event;
   }
 
   create(event: News | Transaction) {
     this.events.push(createEvent(event));
+  }
+
+  delete(id: string) {
+    const index = this.events.findIndex(event => event.id === id);
+    if (index + 1) this.events.splice(index, 1);
   }
 
 }
