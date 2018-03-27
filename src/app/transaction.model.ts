@@ -15,8 +15,8 @@ export class Transaction {
 
   id = uuid();
 
-  constructor(params: Transaction) {
-    Object.assign(this, params);
+  constructor(params?: Transaction) {
+    if (params) Object.assign(this, params);
   }
 
   get title() {

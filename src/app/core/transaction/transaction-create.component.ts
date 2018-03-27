@@ -1,15 +1,28 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { EventsService } from '../../events.service';
+import { Transaction } from '../../transaction.model';
 
 @Component({
   selector: 'app-transaction-create',
   templateUrl: './transaction-create.component.html',
-  styleUrls: ['./transaction-create.component.scss']
+  styleUrls: ['./transaction-create.component.scss'],
 })
 export class TransactionCreateComponent implements OnInit {
 
-  constructor() { }
+  transaction = new Transaction;
 
-  ngOnInit() {
+  constructor(
+    private eventsService: EventsService,
+    private router: Router,
+  ) { }
+
+  ngOnInit() { }
+
+  public save() {
+    this.eventsService.create(this.transaction);
+    this.router.navigate(['/events']);
   }
 
 }
