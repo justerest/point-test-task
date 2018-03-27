@@ -12,19 +12,19 @@
 
   &__item {
     display: inline-block;
-    background: $app-color-grey;
+    background: darken($color: $app-color-grey, $amount: 50);
     transition: background .5s;
 
     &:hover {
-      background: darken($color: $app-color-grey, $amount: 10);
+      background: darken($color: $app-color-grey, $amount: 40);
     }
   }
 
   &__link {
     display: block;
-    padding: 15px;
+    padding: 10px;
     text-decoration: none;
     text-transform: uppercase;
-    color: $app-color-black !important;
+    color: $app-color-white !important;
   }
 }
