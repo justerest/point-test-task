@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from '../app-routing.module';
-import { EventsService } from '../events.service';
 import { EventPropertyComponent } from './event-property.component';
 import { EventsListComponent } from './events-list.component';
 import { NewsCreateComponent } from './news/news-create.component';
@@ -25,6 +24,6 @@ import { TransactionDetailComponent } from './transaction/transaction-detail.com
     NewsCreateComponent,
     TransactionCreateComponent,
   ],
-  providers: [EventsService],
+  providers: [],
 })
 export class CoreModule { }
