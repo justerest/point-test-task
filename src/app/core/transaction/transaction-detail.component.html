@@ -1,0 +1,12 @@
+<app-event-property label="Дата"
+                    [value]="transaction.date"></app-event-property>
+<app-event-property [label]="transaction.getTransactionType"
+                    [value]="transaction.formatValue"></app-event-property>
+<app-event-property *ngIf="transaction.sender"
+                    label="От кого"
+                    [value]="transaction.sender"></app-event-property>
+<app-event-property label="Описание"
+                    [value]="transaction.info"></app-event-property>
+
+<button class="button"
+        (click)="onSubmit()">Удалить</button>

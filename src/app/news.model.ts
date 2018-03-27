@@ -1,22 +1,16 @@
 import * as uuid from 'uuid';
 
 export class News {
-  title: string;
-  content: string;
-  date: Date;
-  type = 'news';
+  title = '';
+  content = '';
+  date = '';
+  type: 'news' = 'news';
 
-  id: string;
+  id = uuid();
+  isRead = false;
 
-  constructor(params: News) {
-    this.title = params.title;
-    this.content = params.content;
-    this.date = params.date;
-    this.id = uuid();
-  }
-
-  get getDate() {
-    return this.date.toISOString().slice(0, 10);
+  constructor(params?: News) {
+    if (params) Object.assign(this, params);
   }
 
 }

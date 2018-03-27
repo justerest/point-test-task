@@ -1,0 +1,19 @@
+.event-property {
+  padding: 0 15px;
+  margin-bottom: 5px;
+  font-size: 20px;
+
+  &__label {
+    display: inline-block;
+    min-width: 150px;
+    font-weight: bold;
+  }
+
+  &__value {
+    display: inline-block;
+  }
+
+  &__input {
+    font-size: 18px;
+  }
+}

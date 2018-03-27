@@ -1,0 +1,24 @@
+<div class="event-property">
+  <label class="event-property__label"
+         [for]="label">{{label}}</label>
+
+  <div *ngIf="!inputType; else inputBlock"
+       class="event-property__value">{{value}}</div>
+  <ng-template #textBlock>
+    <input class="event-property__input"
+           [name]="label"
+           type="date"
+           [(ngModel)]="value">
+  </ng-template>
+  <ng-template #numberBlock>
+    <input class="event-property__input"
+           [name]="label"
+           type="number"
+           [(ngModel)]="value">
+  </ng-template>
+  <ng-template #textareaBlock>
+    <textarea class="event-property__input"
+              [name]="label"
+              [(ngModel)]="value"></textarea>
+  </ng-template>
+</div>

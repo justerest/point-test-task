@@ -2,23 +2,28 @@
 
   <tr>
     <td class="events-table__caption">Заголовок</td>
-    <td class="events-table__caption" (click)="sort('byType')">
+    <td class="events-table__caption"
+        (click)="sortBy('type')">
       Тип
     </td>
-    <td class="events-table__caption" (click)="sort('byDate')">
+    <td class="events-table__caption"
+        (click)="sortBy('date')">
       Дата
     </td>
   </tr>
 
-  <tr *ngFor="let event of events" (click)="select(event)">
-    <td class="events-table__item">
+  <tr *ngFor="let event of events"
+      class="events-table__item"
+      [class.events-table__item_read]="event.type === 'news' && event.isRead"
+      routerLink="/{{event.type}}-detail/{{event.id}}">
+    <td>
       {{event.title}}
     </td>
     <td class="events-table__item">
       {{event.type}}
     </td>
     <td class="events-table__item">
-      {{event.getDate}}
+      {{event.date}}
     </td>
   </tr>
 

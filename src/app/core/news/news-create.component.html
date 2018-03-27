@@ -1,0 +1,10 @@
+<app-event-property label="Дата"
+                    inputType="textBlock"
+                    [(value)]="news.date"></app-event-property>
+<app-event-property label="Заголовок"
+                    [(value)]="news.title"></app-event-property>
+<app-event-property label="Содержание"
+                    [(value)]="news.content"></app-event-property>
+
+<button class="button"
+        (click)="save()">Сохранить</button>

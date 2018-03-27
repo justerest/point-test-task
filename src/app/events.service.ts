@@ -4,43 +4,56 @@ import { Injectable } from '@angular/core';
 
 import { EVENTS } from './mock-events';
 import { News } from './news.model';
-import { SortingFunctions } from './sorting-functions';
 import { Transaction } from './transaction.model';
 
 @Injectable()
 export class EventsService {
 
-  events: (News | Transaction)[] = [];
-  selectedEvent?: News | Transaction | null;
+  view: (News | Transaction)[] = [];
+  viewLinks: {[P in string]: News | Transaction} = {};
 
   constructor() { }
 
   async getEvents() {
     await of(EVENTS).subscribe(events => {
-      this.events = events.map(event => createEvent(<any>event));
+      this.view = events.map(event => {
+        const newEvent = createEvent(<any>event);
+        this.viewLinks[newEvent.id] = newEvent;
+        return newEvent;
+      });
     });
   }
 
-  sort(orderBy: keyof typeof SortingFunctions, isReverse = false) {
-    this.events.sort(SortingFunctions[orderBy]);
-    if (isReverse) this.events.reverse();
-  }
-
-  select(event: News | Transaction) {
-    this.selectedEvent = event;
+  sort(key: keyof News & keyof Transaction, isReverse = false) {
+    this.view.sort(orderBy(key));
+    if (isReverse) this.view.reverse();
   }
 
   create(event: News | Transaction) {
-    this.events.push(createEvent(event));
+    this.view.push(createEvent(event));
   }
 
   delete(id: string) {
-    const index = this.events.findIndex(event => event.id === id);
-    if (index + 1) this.events.splice(index, 1);
+    const index = this.view.findIndex(event => event.id === id);
+    if (index + 1) this.view.splice(index, 1);
+    delete this.viewLinks[id];
+  }
+
+  update(event: News | Transaction) {
+    if (this.viewLinks[event.id]) Object.assign(this.viewLinks[event.id], createEvent(event));
+    else throw new Error('Event is not found:' + JSON.stringify(event));
   }
 
 }
 
 function createEvent(event: News | Transaction) {
   return event.type === 'news' ? new News(<any>event) : new Transaction(<any>event);
+}
+
+function orderBy(key) {
+  return (a: News | Transaction, b: News | Transaction) => (
+    a[key] > b[key] ? 1 :
+      a[key] < b[key] ? -1 :
+        0
+  );
 }

@@ -2,13 +2,13 @@ export const EVENTS = [
   {
     title: 'Горячие новости',
     content: 'Сегодня под мостом...',
-    date: new Date('2018-01-19'),
+    date: '2018-01-19',
     type: 'news',
   },
   {
     title: 'Горячие новости',
     content: 'Сегодня под мостом...',
-    date: new Date('2018-01-18'),
+    date: '2018-01-18',
     type: 'news',
   },
   {
@@ -16,21 +16,20 @@ export const EVENTS = [
     currency: '$',
     sender: 'Миша',
     info: 'За работу',
-    date: new Date('2018-01-18'),
+    date: '2018-01-18',
     type: 'transaction',
   },
   {
     title: 'Горячие новости',
     content: 'Сегодня под мостом...',
-    date: new Date,
+    date: '2018-03-26',
     type: 'news',
   },
   {
     total: -500,
     currency: 'Р',
-    sender: 'Me',
     info: 'За работу',
-    date: new Date('2018-02-01'),
+    date: '2018-02-01',
     type: 'transaction',
   },
 ];

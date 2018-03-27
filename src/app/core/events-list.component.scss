@@ -1,4 +1,8 @@
+@import '~variables.scss';
+
 .events-table {
+  width: 100%;
+
   td {
     padding: 5px 15px;
     font-size: 20px;
@@ -16,5 +20,14 @@
 
   &__item {
     cursor: pointer;
+    background: $app-color-grey;
+
+    &_read {
+      background: rgb(196, 223, 143);
+    }
+
+    td {
+      background: none;
+    }
   }
 }

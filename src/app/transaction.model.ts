@@ -7,39 +7,34 @@ enum TransactionType {
 
 export class Transaction {
   total: number;
-  currency: string;
-  sender: string;
-  info: string;
-  date: Date;
-  type = 'transaction';
+  currency = '';
+  sender = '';
+  info = '';
+  date = '';
+  type: 'transaction' = 'transaction';
 
-  id: string;
+  id = uuid();
 
   constructor(params: Transaction) {
-    this.total = params.total;
-    this.currency = params.currency;
-    this.sender = params.sender;
-    this.info = params.info;
-    this.date = params.date;
-    this.id = uuid();
+    Object.assign(this, params);
   }
 
   get title() {
-    let message = this.getSymbol + ' ' + Math.abs(this.total) + this.currency;
-    if (this.getType === TransactionType.incoming) message += ' от ' + this.sender;
-    return message;
+    return this.getTransactionType === TransactionType.incoming
+      ? this.formatValue + ' от ' + this.sender
+      : this.formatValue;
   }
 
-  private get getType() {
+  get formatValue() {
+    return this.getSymbol + ' ' + Math.abs(this.total) + this.currency;
+  }
+
+  get getTransactionType() {
     return this.total > 0 ? TransactionType.incoming : TransactionType.expense;
   }
 
   get getSymbol() {
-    return this.getType === TransactionType.incoming ? '+' : '-';
-  }
-
-  get getDate() {
-    return this.date.toISOString().slice(0, 10);
+    return this.getTransactionType === TransactionType.incoming ? '+' : '-';
   }
 
 }
