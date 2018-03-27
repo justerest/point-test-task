@@ -26,14 +26,14 @@ export class Transaction {
   }
 
   get formatValue() {
-    return this.getSymbol + ' ' + Math.abs(this.total) + this.currency;
+    return this.mathSign + ' ' + Math.abs(this.total) + this.currency;
   }
 
   get getTransactionType() {
     return this.total > 0 ? TransactionType.incoming : TransactionType.expense;
   }
 
-  get getSymbol() {
+  get mathSign() {
     return this.getTransactionType === TransactionType.incoming ? '+' : '-';
   }
 

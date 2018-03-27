@@ -15,6 +15,8 @@
   <tr *ngFor="let event of events"
       class="events-table__item"
       [class.events-table__item_read]="event.type === 'news' && event.isRead"
+      [class.events-table__item_in-transaction]="event.type === 'transaction' && event.mathSign === '+'"
+      [class.events-table__item_out-transaction]="event.type === 'transaction' && event.mathSign === '-'"
       routerLink="/{{event.type}}-detail/{{event.id}}">
     <td>
       {{event.title}}

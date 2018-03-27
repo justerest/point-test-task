@@ -23,7 +23,15 @@
     background: $app-color-grey;
 
     &_read {
-      background: rgb(196, 223, 143);
+      background: $app-color-yellow;
+    }
+
+    &_in-transaction {
+      background: $app-color-green;
+    }
+
+    &_out-transaction {
+      background: lighten($color: $app-color-red, $amount: 25);
     }
 
     td {
