@@ -3,7 +3,7 @@ import * as uuid from 'uuid';
 export class News {
   title = '';
   content = '';
-  date = '';
+  date = new Date().toISOString().slice(0, 10);
   type: 'news' = 'news';
 
   id = uuid();

@@ -10,7 +10,7 @@ export class Transaction {
   currency = '';
   sender = '';
   info = '';
-  date = '';
+  date = new Date().toISOString().slice(0, 10);
   type: 'transaction' = 'transaction';
 
   id = uuid();
