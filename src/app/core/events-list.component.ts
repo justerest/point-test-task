@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { EventsService } from '../events.service';
-import { News } from '../news.model';
-import { Transaction } from '../transaction.model';
+import { AnyEvent } from '../types';
 
 @Component({
   selector: 'app-events-list',
@@ -12,7 +11,7 @@ import { Transaction } from '../transaction.model';
 export class EventsListComponent implements OnInit {
 
   isReverse = false;
-  orderBy?: keyof News & keyof Transaction;
+  orderKey?: keyof AnyEvent;
 
   constructor(
     private eventsService: EventsService,
@@ -23,13 +22,12 @@ export class EventsListComponent implements OnInit {
   }
 
   get events() {
-    return this.eventsService.view;
+    return this.eventsService.events;
   }
 
-  public sortBy(orderBy: EventsListComponent['orderBy']) {
-    if (this.orderBy === orderBy) this.isReverse = !this.isReverse;
-    this.eventsService.sort(orderBy, this.isReverse);
-    this.orderBy = orderBy;
+  public sort(newOrderKey: keyof AnyEvent) {
+    this.eventsService.changeSortingParams(newOrderKey, this.orderKey === newOrderKey);
+    this.orderKey = newOrderKey;
   }
 
 }
