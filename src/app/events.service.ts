@@ -15,13 +15,7 @@ export class EventsService {
   constructor() { }
 
   async getEvents() {
-    await of(EVENTS).subscribe(events => {
-      this.view = events.map(event => {
-        const newEvent = createEvent(<any>event);
-        this.viewLinks[newEvent.id] = newEvent;
-        return newEvent;
-      });
-    });
+    await of(EVENTS).subscribe(events => events.forEach(this.create.bind(this)));
   }
 
   sort(key: keyof News & keyof Transaction, isReverse = false) {
@@ -30,7 +24,9 @@ export class EventsService {
   }
 
   create(event: News | Transaction) {
-    this.view.push(createEvent(event));
+    const newEvent = createEvent(event);
+    this.view.push(newEvent);
+    this.viewLinks[newEvent.id] = newEvent;
   }
 
   delete(id: string) {
