@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-event-property',
@@ -7,23 +7,11 @@ import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core'
 })
 export class EventPropertyComponent implements OnInit {
 
-  @Input() label: string;
-  @Input() value: string;
-  @Input() inputType?: 'textBlock' | 'numberBlock' | 'textareaBlock';
-
-  inputBlock: TemplateRef<any>;
-
-  @ViewChild('textBlock')
-  textBlock: TemplateRef<any>;
-  @ViewChild('numberBlock')
-  numberBlock: TemplateRef<any>;
-  @ViewChild('textareaBlock')
-  textareaBlock: TemplateRef<any>;
+  @Input() label = '';
+  @Input() value = '';
 
   constructor() { }
 
-  ngOnInit() {
-    if (this.inputType) this.inputBlock = this[this.inputType];
-  }
+  ngOnInit() { }
 
 }
